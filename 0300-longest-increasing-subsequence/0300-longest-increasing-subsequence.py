@@ -1,16 +1,17 @@
 class Solution(object):
     def lengthOfLIS(self, nums):
-        n = len(nums)
-        if n == 0:
-            return 0
-        dp = [1] * n
-        left = 0
-        right = 1
-        while right < n:
-            if nums[right] > nums[left]:
-                dp[right] = max(dp[right], dp[left] + 1)
-            left += 1
-            if left == right:
-                left = 0
-                right += 1
-        return max(dp)
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        answer= [1 for i in range(len(nums))]
+        for i in range(1,len(nums)):
+            j=0
+            while(j<i):
+                if(nums[j]<nums[i]):
+                    answer[i]=max(answer[j]+1,answer[i])                                                     
+          
+                j+=1
+      
+        return max(answer)
+        
