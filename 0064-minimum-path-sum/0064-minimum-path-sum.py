@@ -1,27 +1,21 @@
-from collections import deque
-class Solution(object):
-    def minPathSum(self, grid):
-        """
-        :type grid: List[List[int]]
-        :rtype: int
-        """
-        ncol = len(grid[0])
-        nrow = len(grid)
-        dp = [[float('inf') for col in range(ncol)] for row in range(nrow)]
-        dp[0][0]=grid[0][0]
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        rows, cols = len(grid), len(grid[0])
+        distance = [[float('inf')] * cols for _ in range(rows)]
+        distance[0][0]=grid[0][0]
+        dx,dy=[(1,0)],[(0,1)]
+        queue = [(0,0)]
         
-        for i in range(1,ncol):
-            dp[0][i] =grid[0][i]+dp[0][i-1]
-        for j in range(1,nrow):
-            dp[j][0] =grid[j][0]+dp[j-1][0]
+        while(queue):
+            r, c = queue.pop(0)
+            for dr, dc in [(0, 1), (1, 0)]:
+                nr, nc = r + dr, c + dc
+                if 0 <= nr < rows and 0 <= nc < cols:
+                    if distance[r][c]+grid[nr][nc] < distance[nr][nc]:
+                        distance[nr][nc] = min(distance[nr][nc],distance[r][c]+grid[nr][nc])
+                        queue.append((nr,nc))
 
-        ##dp[i][j] = min(dp[i][j-1],dp[j-1][i])+grid[i][j]
+        return distance[-1][-1]
+            
+            
         
-        for j in range(ncol):
-            for i in range(nrow):
-                if i+1 >=nrow or j+1 >= ncol:
-                    continue
-                else :
-                    dp[i+1][j+1]=min(dp[i][j+1],dp[i+1][j])+grid[i+1][j+1]
-
-        return dp[-1][-1]
