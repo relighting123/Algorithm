@@ -5,12 +5,12 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        
-        maxval,minval = sum(nums),abs(sum(nums))*(-1)
+        maxval,minval = sum(nums),sum(nums)*(-1)
         dp = {}
         
         for t in range(minval,maxval+1):            
             dp[t] = [0]
+            """0의 경우 경우의 수가 2개 나올 수 있으므로 if / else 아닌 if if로 처리"""
             if t == nums[0]:
                 dp[t][0] += 1
             if t == -nums[0]:
