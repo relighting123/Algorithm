@@ -1,14 +1,31 @@
+from collections import deque
 
 class Solution(object):
     def buddyStrings(self, s, goal):
-        if len(s) != len(goal):
+        cnt=0
+        ans=False
+        que = []
+        
+        if(len(s)!=len(goal)) :
             return False
         
-        if s == goal:
-            return len(set(s)) < len(s)
+        distinct_yn = len(set(s)) == len(s)
+        if(s==goal and distinct_yn is False):
+            return True
         
-        diff = [(a, b) for a, b in zip(s, goal) if a != b]
-        if len(diff) != 2:
-            return False
         
-        return diff[0] == diff[1][::-1]
+        for i in range(len(s)):
+            if s[i] != goal[i]:
+                que.append((s[i],goal[i]))
+                if len(que)>2:
+                    return False
+        if len(que) == 2:
+            a,b = que.pop()
+            c,d = que.pop()
+            if (b,a) == (c,d):
+                return True
+            else :
+                return False
+        return False
+                           
+                
