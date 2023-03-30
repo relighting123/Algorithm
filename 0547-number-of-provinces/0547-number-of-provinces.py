@@ -24,9 +24,7 @@ class Solution(object):
         #DFS#
         for i in range(len(node)):
             
-            if node[i][0] not in visit:
-                print('st',i,node[i],visit)
-                
+            if node[i][0] not in visit:                
                 ans+=1
                 dfs(node[i][0])
         
