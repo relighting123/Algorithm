@@ -30,7 +30,6 @@ class Solution(object):
                 ans+=1
                 dfs(node[i][0])
         
-        print(visit)
         return ans + n-len(visit)
                     
                     
