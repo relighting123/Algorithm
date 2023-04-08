@@ -16,7 +16,7 @@ class Solution(object):
         
 
         ##int_flag : 0인 경우 모든 문자를 찾은 상태로 정의. +인 경우 추가로 찾아야 하는 문자가 존재
-        int_flag = sum(dict_t.values())
+        int_flag = len(t)
         
         while(end<len(s)-1):
             end+=1
