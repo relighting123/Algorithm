@@ -6,10 +6,7 @@ class Solution(object):
         max_val= 0
         if x<0 : 
             x=x*(-1)
-            max_val = 2**(31)
             signed=-1
-        else :
-            max_val = 2**(31)-1
         
         len_num =int(math.log10(x))
         ans,len_ans = 0,0
