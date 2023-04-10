@@ -3,7 +3,6 @@ class Solution(object):
         if x==0:
             return x
         signed=1
-        max_val= 0
         if x<0 : 
             x=x*(-1)
             signed=-1
@@ -11,7 +10,7 @@ class Solution(object):
         len_num =int(math.log10(x))
         ans,len_ans = 0,0
         val = x// 10**(len_num)
-        i,temp=0,0
+        i=0
         while len_ans<=len_num:
             mok= x//10**(len_num-i) 
             x-=mok*10**(len_num-i)  
