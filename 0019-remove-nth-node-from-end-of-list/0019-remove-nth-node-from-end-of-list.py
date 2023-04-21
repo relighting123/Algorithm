@@ -6,15 +6,15 @@ class Solution(object):
         answer= []    
         point=head
         target = head
-        k=n
+
         #찾아야할 간격만큼 target을 설정.
-        while k>0:
+        while n>0:
             target = target.next
-            k-=1
+            n-=1
         #target이 None인 경우라면 n==노드의 길이. 즉 최초 노드를 제거해야 하는 순간을 의미하므로 head.next를 return함.   
         if target is None:
             return head.next
-        #target의 next가 None인 경우라면 두가지 케이스가 존재함. 가장 마지막 노드를 제거하는 경우 혹은 
+        #target의 next가 None인 경우라면 최초 노드의 next를 제거해야 하는 경우 
         if target.next is None:
             head.next=head.next.next
             return head
