@@ -7,18 +7,14 @@ class Solution(object):
     def removeNthFromEnd(self, head, n):
         if head.next == None:
             return None
-        if head.next.next == None:
-            if n==2:
-                return head.next
-            else :
-                head.next=None
-                return head
+
         answer= []    
         point=head
         target = head
         while n>0:
             target = target.next
             n-=1
+            
         if target is None:
             return head.next
         while target.next:
