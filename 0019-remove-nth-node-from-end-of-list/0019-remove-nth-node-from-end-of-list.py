@@ -13,25 +13,24 @@ class Solution(object):
             else :
                 head.next=None
                 return head
-        answer= []
-        
-        dummy = ListNode(0)
-        dummy.next = head
-        point=dummy
-        target = dummy
+        answer= []    
+        point=head
+        target = head
         while n>0:
             target = target.next
             n-=1
-        
+        if target is None:
+            return head.next
         while target.next:
             answer.append(point)
             point=point.next
+           
             target=target.next
         if len(answer)<1:
             answer.append(point)
-
-        point.next=point.next.next
-        return answer[0].next
+        
+        point.next=point.next.next    
+        return answer[0]
         
         
         
