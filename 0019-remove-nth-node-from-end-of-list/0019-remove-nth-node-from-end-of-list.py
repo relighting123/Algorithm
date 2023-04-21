@@ -22,7 +22,7 @@ class Solution(object):
             else :
                 head.next=head.next.next
                 return head
-        print('aa')
+            
         while target.next:
             answer.append(point)
             point=point.next
