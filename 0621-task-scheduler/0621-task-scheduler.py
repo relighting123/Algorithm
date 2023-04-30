@@ -1,16 +1,21 @@
-from collections import Counter
+from collections import defaultdict
 
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
-        task_list = Counter(tasks).values()
-        max_task_cnt = max(task_list)
-        num_distinctmax_cnt = sum(1 for i in task_list if i==max_task_cnt)
-        idle = (n-num_distinctmax_cnt+1)*(max_task_cnt-1)
-        remain_task= sum(task_list)-max_task_cnt*num_distinctmax_cnt
+        task_freq = defaultdict(int)
+        for task in tasks:
+            task_freq[task] += 1
         
-        if idle>remain_task:
-            return idle+max_task_cnt*num_distinctmax_cnt
-        else:
-            return  remain_task+max_task_cnt*num_distinctmax_cnt
-            
-           
+        max_freq = 0
+        num_max_freq = 0
+        for freq in task_freq.values():
+            if freq > max_freq:
+                max_freq = freq
+                num_max_freq = 1
+            elif freq == max_freq:
+                num_max_freq += 1
+        
+        idle_time = (n - num_max_freq + 1) * (max_freq - 1)
+        remaining_tasks = len(tasks) - max_freq * num_max_freq
+        
+        return len(tasks) + max(0, idle_time - remaining_tasks)
