@@ -6,7 +6,7 @@ class Solution:
         """
         nums = [str(x) for x in nums]
         longest = max([len(x) for x in nums], default=0)
-        a=[x*(longest//len(x)+1) for x in nums]
+        a=[x*(10) for x in nums]
         print(a)
         nums.sort(key=lambda x: x*(longest//len(x)+1), reverse=True)
         if nums and nums[0] == '0':
