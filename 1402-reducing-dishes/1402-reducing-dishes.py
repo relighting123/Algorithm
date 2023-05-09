@@ -1,9 +1,9 @@
 class Solution:
     def maxSatisfaction(self, satisfaction: List[int]) -> int:
         satisfaction.sort()
-        
+        answer=0
         if satisfaction[0]>=0:
-            answer=0
+            
             for t, dish in enumerate(satisfaction):
                 answer +=(t+1)*dish
             return answer
@@ -24,5 +24,9 @@ class Solution:
             for dish in range(1,length):
                 dp[t][dish]=max(dp[t][dish],dp[t-1][dish-1])+satisfaction[dish]*t
         
-        return max(list(zip(*dp))[length-1])  
+        #return max(list(zip(*dp))[length-1])  
+         
+        for t in range(length+1):
+            answer=max(answer,dp[t][length-1])
+        return answer
             
