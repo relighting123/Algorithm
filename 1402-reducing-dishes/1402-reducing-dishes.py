@@ -1,6 +1,13 @@
 class Solution:
     def maxSatisfaction(self, satisfaction: List[int]) -> int:
         satisfaction.sort()
+        
+        if satisfaction[0]>=0:
+            answer=0
+            for t, dish in enumerate(satisfaction):
+                answer +=(t+1)*dish
+            return answer
+        
         min_val = float("-inf")
         length = len(satisfaction)
         
