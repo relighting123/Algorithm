@@ -24,7 +24,7 @@ class Solution:
             for dish in range(1,length):
                 dp[t][dish]=max(dp[t][dish],dp[t-1][dish-1])+satisfaction[dish]*t
         
-        #return max(list(zip(*dp))[length-1])  
+        #(속도 느림) return max(list(zip(*dp))[length-1])  
          
         for t in range(length+1):
             answer=max(answer,dp[t][length-1])
