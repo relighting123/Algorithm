@@ -8,17 +8,14 @@ class Solution:
             return False
         
         
-        col_list=[]
-        for i in range(n_col):
-            col_list.append(matrix[i][0])
-        
+        col_list=[row[0] for row in matrix]
+                
         idx_col = bisect_left(col_list,target)
         if idx_col<len(col_list):
             if col_list[idx_col]==target :
                 return True
         
         t_list=matrix[idx_col-1]
-
             
         idx_ans = bisect_left(t_list,target)
         
