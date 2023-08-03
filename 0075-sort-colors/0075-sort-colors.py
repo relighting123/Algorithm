@@ -12,9 +12,6 @@ class Solution:
         a=i
         b=bisect_right(nums,max_val)-1
         
-        print(a,b)
-        
-        
         while(i<=b):
             if nums[i]==0:
                # print("k",i)
