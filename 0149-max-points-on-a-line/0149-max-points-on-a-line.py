@@ -14,22 +14,15 @@ class Solution:
     
     def maxPoints(self, points: List[List[int]]) -> int:
         n = len(points)
-        board = [[False]*n for _ in range(n)]
         ans=0
         candidates=defaultdict(int)
-        for i in range(n):
-            
+        for i in range(n):            
             for j in range(i+1,n):
-                board[i][j]=self.getslope(points[i],points[j])
-                candidates[board[i][j]]+=1
+                candidates[self.getslope(points[i],points[j])]+=1
            # print(candidates,ans)
             if len(candidates)>0:
                 ans=max(ans,max(candidates.values())) 
-            candidates=defaultdict(int)
- 
-                
-        
-        
+            candidates=defaultdict(int)       
        
         return ans+1
         
