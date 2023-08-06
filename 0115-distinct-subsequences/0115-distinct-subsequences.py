@@ -1,5 +1,4 @@
 from collections import defaultdict
-from bisect import bisect_left
 
 class Solution:
     def getDp_TwoPointer(self,target_list,prev_dict):
@@ -15,8 +14,7 @@ class Solution:
                 continue
             partialSum+=prev_dict[l]
             l+=1
-        return curr_dict
-            
+        return curr_dict           
         
         
         
