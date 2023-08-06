@@ -1,19 +1,50 @@
-class Solution:
-    def numDistinct(self, s: str, t: str) -> int:
-        n = len(s)
-        m= len(t)
+from collections import defaultdict
+from bisect import bisect_left
 
-        dp = [ [0]*(m+1) for _ in range(n+1)]
+class Solution:
+    def getDp_TwoPointer(self,target_list,prev_dict):
+        curr_dict= defaultdict(int)
+        minPrev_idx,i = min(prev_dict.keys()),0  
+        l,p = minPrev_idx,target_list[0]
+        partialSum = 0 
+        while(i<len(target_list)):
+            p=target_list[i]
+            if l>=p:
+                curr_dict[p]=partialSum
+                i+=1
+                continue
+            partialSum+=prev_dict[l]
+            l+=1
+        return curr_dict
+            
         
-        for i in range(n):
-            dp[i][0]=1
-        for j in range(1,m+1):
-            for i in range(1,n+1):
-                if s[i-1]==t[j-1]:
-                    dp[i][j]=dp[i-1][j]+dp[i-1][j-1]
-                else :
-                    dp[i][j]=dp[i-1][j]
-                    
-        return dp[n][m]
+        
+        
+    def numDistinct(self, s: str, t: str) -> int:
+        sCharidx= defaultdict(list)
+        len_t,len_s=len(t),len(s)
+        for idx,val in enumerate(s):
+            sCharidx[val].append(idx)
+    
+        dp = [defaultdict(int) for _ in range(len(t))]
+        dp[0]= collections.Counter(sCharidx[t[0]])
+        ans=0
+        for i in range(1,len_t):
+            target_char=t[i]
+            target_list = sCharidx[target_char]
+            if len(target_list)==0: 
+                return 0
+            dp[i]=self.getDp_TwoPointer(target_list,dp[i-1])
+
+        return sum(dp[len_t-1].values())
+            
+
+            
+            
+    
+            
                 
                 
+            
+            
+        
