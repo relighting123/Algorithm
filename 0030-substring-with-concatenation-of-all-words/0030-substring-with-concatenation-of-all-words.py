@@ -16,7 +16,8 @@ class Solution:
                     break
 
                 if dic_memo[target_s] == 0:
-                    min_target_s_idx = min(dic_idx[target_s])
+                    min_target_s_idx = dic_idx[target_s][0]
+
                     for i in range(l, min_target_s_idx + 1, len_word):
                         dic_memo[s[i:i+len_word]] += 1
                         dic_idx[s[i:i+len_word]].pop(0)
