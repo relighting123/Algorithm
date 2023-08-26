@@ -21,10 +21,9 @@ class Solution:
             
             factor *=10
         nums=list(queue)
-        print(nums)
         
         #인접 두개 요소 간 차이 계산
-        l,ans=0,abs(nums[1]-nums[0])
+        l,ans=0,(nums[1]-nums[0])
         while l<len(nums)-1:
             ans = max(nums[l+1]-nums[l],ans)
             l+=1
