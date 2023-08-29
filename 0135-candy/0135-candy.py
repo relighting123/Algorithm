@@ -3,10 +3,9 @@ class Solution:
         def empty_queue(queue,cnt_prevCandy,ans):
             j,n,temp_val=1,len(queue),0
             while queue:
-                temp_val = j
+                ans+= j
                 queue.popleft()
                 j+=1
-                ans+=temp_val
             ans-=min(cnt_prevCandy,n)
             queue=deque([])
             return ans
