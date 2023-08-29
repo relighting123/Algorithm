@@ -7,7 +7,7 @@ class Solution:
                 queue.popleft()
                 j+=1
                 ans+=temp_val
-            ans-=min(cnt_prevCandy,temp_val)
+            ans-=min(cnt_prevCandy,n)
             queue=deque([])
             return ans
         
