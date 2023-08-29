@@ -1,7 +1,7 @@
 class Solution:
     def candy(self, ratings: List[int]) -> int:
         
-        def empty_queue(queue,list_ans,cnt_prevCandy,flag,last_acsidx):
+        def empty_queue(queue,list_ans,cnt_prevCandy,flag):
             #print("Queue 비우기",queue)
             j=1
             n=len(queue)
@@ -28,7 +28,6 @@ class Solution:
         n=len(ratings)
         cnt_prevCandy=0
         flag=""
-        last_acsidx=0
         for i in range(1,n):
            # print(i)
             prev_val,cur_val=ratings[i-1],ratings[i]
@@ -41,7 +40,7 @@ class Solution:
                     
                 if queue:
                     queue.append(cur_val)
-                    list_ans=empty_queue(queue,list_ans,cnt_prevCandy,flag,last_acsidx)  
+                    list_ans=empty_queue(queue,list_ans,cnt_prevCandy,flag)  
                     queue=deque([])
                     cnt_prevCandy=1
                 
@@ -58,7 +57,7 @@ class Solution:
                 queue.append(prev_val)
                 if i==n-1:
                     queue.append(cur_val)
-                    list_ans=empty_queue(queue,list_ans,cnt_prevCandy,flag,last_acsidx)  
+                    list_ans=empty_queue(queue,list_ans,cnt_prevCandy,flag)  
                     queue=deque([])
                     cnt_prevCandy=1
                     
@@ -74,7 +73,7 @@ class Solution:
                     list_ans.append(cnt_prevCandy)
                 if queue:
                     queue.append(cur_val)
-                    list_ans=empty_queue(queue,list_ans,cnt_prevCandy,flag,last_acsidx)  
+                    list_ans=empty_queue(queue,list_ans,cnt_prevCandy,flag)  
                     queue=deque([])
                     cnt_prevCandy=1
                 list_ans.append(1)
