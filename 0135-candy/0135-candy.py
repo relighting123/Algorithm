@@ -15,7 +15,7 @@ class Solution:
             return ans
         
         
-        list_ans,queue,i,n,cnt_prevCandy,flag=[],deque(),0,len(ratings),0,""
+        queue,i,n,cnt_prevCandy,flag=deque(),0,len(ratings),0,""
         ans=0
         
         
