@@ -1,6 +1,6 @@
 class Solution:
     def candy(self, ratings: List[int]) -> int:
-        def empty_queue(queue,cnt_prevCandy,flag,ans):
+        def empty_queue(queue,cnt_prevCandy,ans):
             j,n,temp_val=1,len(queue),0
             while queue:
                 temp_val = j
@@ -12,8 +12,7 @@ class Solution:
             return ans
         
         
-        queue,i,n,cnt_prevCandy,flag=deque(),0,len(ratings),0,""
-        ans=0
+        queue,i,n,cnt_prevCandy,ans=deque(),0,len(ratings),0,0 
         
         
         for i in range(1,n):
@@ -25,12 +24,11 @@ class Solution:
             if cur_val>prev_val:
                 if queue:
                     queue.append(cur_val)
-                    ans=empty_queue(queue,cnt_prevCandy,flag,ans)  
+                    ans=empty_queue(queue,cnt_prevCandy,ans)  
                     cnt_prevCandy=1
                 
                 cnt_prevCandy= cnt_prevCandy+1
                 ans+=cnt_prevCandy
-                flag="asc"
                 
             #내림차순인 경우 
             elif cur_val<prev_val:
@@ -38,17 +36,16 @@ class Solution:
                 queue.append(prev_val)
                 if i==n-1:
                     queue.append(cur_val)
-                    ans=empty_queue(queue,cnt_prevCandy,flag,ans)  
+                    ans=empty_queue(queue,cnt_prevCandy,ans)  
                     cnt_prevCandy=1
             #전/후 동일한 경우 내림차순 queue 내 값을 활용하여 list_ans 업데이트하고 초기화 flag를 전달함.
             else :
                 if queue:
                     queue.append(cur_val)
-                    ans=empty_queue(queue,cnt_prevCandy,flag,ans)  
+                    ans=empty_queue(queue,cnt_prevCandy,ans)  
                     cnt_prevCandy=1
                 ans+=1
                 cnt_prevCandy=1
-                flag="same"
         if n==1:
             return 1
         return ans
