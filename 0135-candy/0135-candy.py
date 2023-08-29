@@ -39,9 +39,10 @@ class Solution:
                     ans=empty_queue(queue,cnt_prevCandy,ans)  
                     cnt_prevCandy=1
             #전/후 동일한 경우 내림차순 queue 내 값을 활용하여 list_ans 업데이트하고 초기화 flag를 전달함.
-            else :       
-                ans+=1
+            else : 
                 cnt_prevCandy=1
+                ans+=1
+                
         if n==1:
             return 1
         return ans
