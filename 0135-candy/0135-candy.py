@@ -2,8 +2,6 @@ class Solution:
     def candy(self, ratings: List[int]) -> int:
         def empty_queue(queue,cnt_prevCandy,ans):
             j,n=1,len(queue)
-            summation= n*(n+1)/2
-            print(int(summation))
             while queue:
                 ans+= j
                 queue.popleft()
