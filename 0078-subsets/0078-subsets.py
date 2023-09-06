@@ -1,10 +1,14 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        ans = [[]]
-        for num in nums:
-            new_subsets = []
-            for subset in ans:
-                new_subset = subset + [num]
-                new_subsets.append(new_subset)
-            ans.extend(new_subsets)
+        n = len(nums)
+        ans = []
+        
+        # 비트마스킹을 이용하여 부분집합 생성
+        for i in range(2**n):
+            subset = []
+            for j in range(n):
+                if (i >> j) & 1:
+                    subset.append(nums[j])
+            ans.append(subset)
+        
         return ans
