@@ -3,7 +3,7 @@ class Solution:
         ans,n=[],2**len(nums)
         for i in range(n):
             subans=[]
-            for j in range(min(i,len(nums))):
+            for j in range(len(nums)):
                 if i&1<<j :
                     subans.append(nums[j])
             ans.append(subans)
