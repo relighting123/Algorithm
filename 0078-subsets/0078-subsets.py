@@ -4,7 +4,7 @@ class Solution:
         for i in range(n):
             subans=[]
             for j in range(len(nums)):
-                if i >> j & 1:
+                 if i&1<<j :
                     subans.append(nums[j])
             ans.append(subans)
         return ans
