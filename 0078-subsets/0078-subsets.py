@@ -1,12 +1,12 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         ans,n=[],2**len(nums)
-        for i in range(n):
+        for partial_combination in range(n):
             subans=[]
             for j in range(len(nums)):
-                if j>i:
+                if j>partial_combination:
                     continue
-                if i&1<<j :
+                if partial_combination&1<<j :
                     subans.append(nums[j])
             ans.append(subans)
         return ans
