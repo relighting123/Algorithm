@@ -10,9 +10,11 @@ class Solution:
         if s1==s2==e1==e2:
             return intervals[:s1]+[newInterval]+intervals[s1:]
         else:
+            new_start=min(intervals[s2][0],newInterval[0])
             if e1>e2:
-                return intervals[:s2]+[[min(intervals[s2][0],newInterval[0]),max(intervals[e2][1],newInterval[1])]]+intervals[e2+1:]
+                new_end=max(intervals[e2][1],newInterval[1])
             else:
-                return intervals[:s2]+[[min(intervals[s2][0],newInterval[0]),newInterval[1]]]+intervals[e2:]
+                new_end=newInterval[1]
+            return intervals[:s2]+[[new_start,new_end]]+intervals[e1:]
         
                 
