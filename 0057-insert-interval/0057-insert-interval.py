@@ -11,7 +11,7 @@ class Solution:
             return intervals[:s1]+[newInterval]+intervals[s1:]
         else:
             new_start=min(intervals[s2][0],newInterval[0])
-            if e1>e2:
+            if e1!=e2:
                 new_end=max(intervals[e2][1],newInterval[1])
             else:
                 new_end=newInterval[1]
