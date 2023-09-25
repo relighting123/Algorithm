@@ -18,7 +18,6 @@ class Solution:
         FileMemory = deque()
         while queue:
             queue,nextFile = searchFile(queue)
-            print(ans)
             if nextFile =="/..":
                 currFile=FileMemory.pop() if FileMemory else ""               
                 ans=ans[:-len(currFile)]
