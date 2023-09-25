@@ -1,16 +1,27 @@
-from collections import deque
-
 class Solution:
     def simplifyPath(self, path: str) -> str:
-        stack = deque()
-        parts = path.split('/')  # 경로를 슬래시로 분할
+       
+        def searchFile(queuepath):
+            queue = queuepath
+            File = ""
+            File+=(queue.popleft())
+            while queue:
+                if queue[0]=="/":
+                    break               
+                File+=(queue.popleft())
+            return (queue),(File)
         
-        for part in parts:
-            if part == '..':
-                if stack:
-                    stack.pop()  # 상위 디렉토리로 이동
-            elif part and part != '.':
-                stack.append(part)  # 현재 디렉토리 추가
-        
-        simplified_path = '/' + '/'.join(stack)
-        return simplified_path if simplified_path else '/'
+        queue=deque(path)
+        ans=""
+        FileMemory = deque()
+        while queue:
+            queue,nextFile = searchFile(queue)
+            if nextFile =="/..":
+                currFile=FileMemory.pop() if FileMemory else ""               
+                ans=ans[:-len(currFile)]
+            elif nextFile == "/." or nextFile == "/" :
+                continue
+            else:
+                ans+=nextFile
+                FileMemory.append(nextFile)
+        return ans if len(ans)>0 else "/"
