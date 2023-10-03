@@ -4,23 +4,15 @@ class Solution:
         #dp[i]: t가 i인 시점의 최대 profit
         S=0
         P=1
-        def find_closest_number(dic, target):
-            closest_number = None
-
-            for key in reversed(dic.keys()):
-                if key <= target:
-                    return key
-            return None
-
-        
+       
         dp=defaultdict(int)
         info=defaultdict(list)
-        n=max(endTime)+1           
         for i in range(len(startTime)):
             info[endTime[i]].append([startTime[i],profit[i]])
        # print(info)
         lastidx=0
         endTime.sort()
+        list_endTime=[0]
         for i in endTime:
             #print(i,dp)
             #dp[i]=dp[i-1]
@@ -28,11 +20,18 @@ class Solution:
                # print(cand)
                 cand_s=cand[S]
                 cand_p=cand[P]
-                dp[i]=max(dp[lastidx],dp[find_closest_number(dp,cand_s)]+cand_p)
+                previdx=bisect_left(list_endTime,cand_s)
+                if previdx<len(list_endTime) and list_endTime[previdx] != cand_s:
+                    previdx-=1
+                if  previdx==len(list_endTime):
+                    previdx-=1
+                dp[i]=max(dp[lastidx],dp[list_endTime[previdx]]+cand_p)
+
+                list_endTime.append(i)
                 lastidx=i
                # print('result',dp)
         
-        return dp[n-1]
+        return dp[endTime[-1]]
         
         
         
