@@ -13,8 +13,6 @@ class Solution:
             dic[hand[i]]+=1
         cnt=0
         while cnt<n:
-            if cnt==n:
-                return True
             for i in dic:
                 if dic[i]>0:
                     s=i
