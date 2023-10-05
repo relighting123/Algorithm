@@ -10,8 +10,6 @@ class Solution:
         prevVal=hand[l]
         while r<n:
             if visited[r] or hand[r] == prevVal: 
-                if r==l:
-                    prevVal=hand[l]
                 r += 1;
                 continue
             if hand[r]>prevVal+1 and r!=l: return False
