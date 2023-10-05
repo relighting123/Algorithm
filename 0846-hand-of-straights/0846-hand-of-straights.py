@@ -21,8 +21,9 @@ class Solution:
             cnt+=1
             if cnt==groupSize:
                 if all(visited) : return True
-                cnt,prevVal=1,hand[l]
+              
                 while visited[l]: l+=1
                 visited[l]=True
                 r=l
+                cnt,prevVal=1,hand[l]
         return True if cnt==groupSize else False 
