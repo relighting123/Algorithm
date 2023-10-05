@@ -18,7 +18,6 @@ class Solution:
             for i in dic:
                 if dic[i]>0:
                     s=i
-                    print(s)
                     break
             for i in range(groupSize):
                 if dic[s+i]==0:
