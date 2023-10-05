@@ -9,7 +9,7 @@ class Solution:
         hand.sort()
         prevVal=hand[l]
         while r<n:
-            if visited[r] or hand[r] == prevVal or r==l: 
+            if visited[r] or hand[r] == prevVal: 
                 if r==l:
                     prevVal=hand[l]
                 r += 1;
