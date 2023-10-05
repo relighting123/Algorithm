@@ -1,19 +1,14 @@
 class Solution:
     def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
         n=len(hand)
-        if groupSize ==1:
-            return True
-        if n%groupSize != 0:
-            return False
+        if groupSize ==1:  return True
+        if n%groupSize != 0:  return False
         
-        l,r,visited,cnt =0,0,[False]*n,1
-        visited[l]=True
+        l,r,visited,cnt =0,0,[True]+[False]*(n-1),1
         
         hand.sort()
         prevVal=hand[l]
-        #print("정렬된 hand",hand)
-        while max(l,r)<n:
-            #print("before",hand[l],hand[r],l,r,prevVal,visited,cnt)
+        while r<n:
             if visited[r] or hand[r]==prevVal or r==l: 
                 #print("r은 이미 방문했거나 이전 값과 동일 값입니다. 위치 +1합니다.")
                 if r==l:
