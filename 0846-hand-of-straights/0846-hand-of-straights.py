@@ -12,7 +12,7 @@ class Solution:
         for i in range(n):
             dic[hand[i]]+=1
         cnt=0
-        while cnt<=n:
+        while cnt<n:
             if cnt==n:
                 return True
             for i in dic:
