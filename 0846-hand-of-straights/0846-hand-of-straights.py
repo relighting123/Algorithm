@@ -14,7 +14,7 @@ class Solution:
                     prevVal=hand[l]
                 r += 1;
                 continue
-            if hand[r]>prevVal+1 and prevVal!=-1: return False
+            if hand[r]>prevVal+1 and r!=l: return False
             
             visited[l],visited[r],prevVal=True,True,hand[r]            
             r+=1
