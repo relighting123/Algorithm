@@ -10,7 +10,6 @@ class Solution:
         dict_a = defaultdict(list)
         
         for string in strs:
-            key = convert(string)
-            dict_a[key].append(string)
+            dict_a[convert(string)].append(string)
         
         return list(dict_a.values())
