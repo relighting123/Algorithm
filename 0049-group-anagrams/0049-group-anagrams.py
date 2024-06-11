@@ -4,13 +4,13 @@ class Solution:
         def convert(string):
             base = [0] * 26
             for char in string:
-                idx = ord(char) - ord('a')
-                base[idx] += 1
+                base[ord(char) - ord('a')] += 1
             return tuple(base)
         
         dict_a = defaultdict(list)
         
         for string in strs:
-            dict_a[convert(string)].append(string)
+            key = convert(string)
+            dict_a[key].append(string)
         
         return list(dict_a.values())
