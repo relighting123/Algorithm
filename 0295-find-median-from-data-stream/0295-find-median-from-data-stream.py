@@ -7,18 +7,19 @@ class MedianFinder:
         self.longerpart = []  # min-heap
 
     def addNum(self, num: int) -> None:
-        if not self.lowerpart or num <= -self.lowerpart[0]:
-            heapq.heappush(self.lowerpart, -num)
-        else:
+        if not self.longerpart or num >= self.longerpart[0]:
             heapq.heappush(self.longerpart, num)
+        else:
+            heapq.heappush(self.lowerpart, -num)
 
-        if len(self.lowerpart) > len(self.longerpart) + 1:
-            heapq.heappush(self.longerpart, -heapq.heappop(self.lowerpart))
-        elif len(self.longerpart) > len(self.lowerpart):
+        # Balance the heaps: Ensure longerpart (min-heap) always has the extra element when odd
+        if len(self.longerpart) > len(self.lowerpart) + 1:
             heapq.heappush(self.lowerpart, -heapq.heappop(self.longerpart))
+        elif len(self.lowerpart) > len(self.longerpart):
+            heapq.heappush(self.longerpart, -heapq.heappop(self.lowerpart))
 
     def findMedian(self) -> float:
         if len(self.lowerpart) == len(self.longerpart):
             return (-self.lowerpart[0] + self.longerpart[0]) / 2.0
         else:
-            return -self.lowerpart[0]
+            return self.longerpart[0]
