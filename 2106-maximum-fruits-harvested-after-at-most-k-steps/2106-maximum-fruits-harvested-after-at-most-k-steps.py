@@ -5,7 +5,6 @@ class Solution:
 
         minPoint = max(0, startPos - k)  
         maxPoint = startPos + k          
-        fruits_dict = {item[0]: item[1] for item in fruits}
         queue = deque()
         fruits_queue = deque()
         for item in fruits:
@@ -13,9 +12,7 @@ class Solution:
                 queue.append(item)
             elif startPos > item[0] and startPos-k<=item[0]:
                 fruits_queue.append(item)
-        
         a,b= startPos,startPos+k
-        
         ans =  sum(sublist[1] for sublist in queue)
         t_ans=ans
         
